@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://p7npqx372cht"]
+
+[ext_resource type="Script" uid="uid://cf15d6aaov3b1" path="res://script/nemico.tscn.gd" id="1_5v14f"]
+[ext_resource type="Texture2D" uid="uid://4uq1bmclq7bc" path="res://assets/assets/eagle-attack.png" id="2_5v14f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k32y"]
+atlas = ExtResource("2_5v14f")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mj87a"]
+atlas = ExtResource("2_5v14f")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqe50"]
+atlas = ExtResource("2_5v14f")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptvai"]
+atlas = ExtResource("2_5v14f")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vig8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k32y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mj87a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqe50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptvai")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5iqp"]
+radius = 13.416408
+
+[node name="aquila" type="CharacterBody2D" unique_id=1451103104]
+position = Vector2(152, 167)
+script = ExtResource("1_5v14f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2052812587]
+sprite_frames = SubResource("SpriteFrames_vig8q")
+autoplay = "default"
+frame_progress = 0.08758322
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=132111895]
+position = Vector2(-4, 6)
+shape = SubResource("CircleShape2D_j5iqp")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=20152604]
+position = Vector2(-2, 7)
+rect = Rect2(-17, -14, 33, 27)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

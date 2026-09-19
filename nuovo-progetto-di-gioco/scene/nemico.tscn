@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://b0w6qxawhsfho"]
+
+[ext_resource type="Script" uid="uid://cf15d6aaov3b1" path="res://script/nemico.tscn.gd" id="1_4vymo"]
+[ext_resource type="Texture2D" uid="uid://cupgcmu2fj3w4" path="res://assets/assets/frog-idle.png" id="2_jqosa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbhf3"]
+atlas = ExtResource("2_jqosa")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnb1v"]
+atlas = ExtResource("2_jqosa")
+region = Rect2(35, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qovd5"]
+atlas = ExtResource("2_jqosa")
+region = Rect2(70, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5amcf"]
+atlas = ExtResource("2_jqosa")
+region = Rect2(105, 0, 35, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vig8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbhf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnb1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qovd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5amcf")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5iqp"]
+
+[node name="rana" type="CharacterBody2D" unique_id=1451103104]
+position = Vector2(152, 167)
+script = ExtResource("1_4vymo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2052812587]
+sprite_frames = SubResource("SpriteFrames_vig8q")
+autoplay = "default"
+frame_progress = 0.6056505
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=132111895]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_j5iqp")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=20152604]
+rect = Rect2(-17, -11, 32, 23)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
